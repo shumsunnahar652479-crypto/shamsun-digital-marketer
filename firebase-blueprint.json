@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "PortfolioSettings": {
+      "title": "PortfolioSettings",
+      "description": "Customizable portfolio settings including personal bio, stats, services, and projects",
+      "type": "object",
+      "properties": {
+        "personal": {
+          "type": "object",
+          "description": "Personal and contact details"
+        },
+        "stats": {
+          "type": "array",
+          "description": "Metric counters"
+        },
+        "services": {
+          "type": "array",
+          "description": "Services list"
+        },
+        "projects": {
+          "type": "array",
+          "description": "Projects list"
+        },
+        "toolkit": {
+          "type": "array",
+          "description": "Tools list"
+        },
+        "workProcess": {
+          "type": "array",
+          "description": "Work process steps"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of update"
+        }
+      }
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Client consultation and campaign inquiries submitted via contact form",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "service": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "budget": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["name", "email", "service", "message"]
+    }
+  },
+  "firestore": {
+    "/portfolio/{docId}": {
+      "schema": "PortfolioSettings",
+      "description": "Live portfolio content and settings"
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Incoming client campaign inquiries"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Prevent extensions from throwing "Cannot set property fetch of #<Window> which has only a getter"
+      (function () {
+        try {
+          var originalFetch = window.fetch;
+          var currentFetch = typeof originalFetch === 'function' ? originalFetch.bind(window) : originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function () {
+              return currentFetch;
+            },
+            set: function (newFetch) {
+              currentFetch = newFetch;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (e) {
+          // Graceful fallback
+        }
+      })();
+    </script>
+    <title>Mst. Shamsun Akter Shahida - Digital Marketer Portfolio</title>
+    <meta name="description" content="Professional portfolio of Mst. Shamsun Akter Shahida, certified Digital Marketer specializing in Meta Ads, Google Ads, AI Video Content, Lead Generation, and Local SEO." />
+    <meta property="og:title" content="Mst. Shamsun Akter Shahida - Digital Marketer Portfolio" />
+    <meta property="og:description" content="Professional portfolio of Mst. Shamsun Akter Shahida, certified Digital Marketer specializing in Meta Ads, Google Ads, AI Video Content, Lead Generation, and Local SEO." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#0b0b0f] text-slate-100 antialiased selection:bg-purple-600 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

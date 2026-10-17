@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety default-deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Public portfolio settings: readable by everyone, writable for live site customization
+    match /portfolio/{docId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Client inquiries: any prospective client can submit an inquiry
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.name is string &&
+                       request.resource.data.name.size() > 0 &&
+                       request.resource.data.name.size() <= 100 &&
+                       request.resource.data.email is string &&
+                       request.resource.data.email.size() > 0 &&
+                       request.resource.data.email.size() <= 100 &&
+                       request.resource.data.message is string &&
+                       request.resource.data.message.size() <= 2500;
+      allow read, update, delete: if false;
+    }
+  }
+}
